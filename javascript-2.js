@@ -17,15 +17,26 @@ var fn2 = () => new Promise(resolve => {
 })
 
 function promiseReduce(asyncFunctions, reduce, initialValue) {
-  let memo = initialValue;
+  // The first type of solution:
 
-  return new Promise(async (resolve) => {
-    for (let i = 0; i < asyncFunctions.length; i++) {
-      let result = await asyncFunctions[i]();
-      memo = reduce(memo, result);
-    }
+  // let memo = initialValue;
 
-    resolve(memo)
+  // return new Promise(async (resolve) => {
+  //   for (let i = 0; i < asyncFunctions.length; i++) {
+  //     let result = await asyncFunctions[i]();
+  //     memo = reduce(memo, result);
+  //   }
+
+  //   resolve(memo)
+  // })
+
+  // The second type of solution with Array.reduce:
+  return new Promise(resolve => {
+    let result = asyncFunctions.reduce(async (memo, fn) => {
+      return reduce(await memo, await fn());
+    }, Promise.resolve(initialValue))
+
+    resolve(result)
   })
 }
 
