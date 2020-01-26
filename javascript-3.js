@@ -3,13 +3,27 @@
 // Уникальный селектор может быть использован `document.querySelector()` и возвращать исходный элемент.
 // `document.querySelectorAll()`, вызванный с этим селектором, не должен находить никаких элементов, кроме исходного.
 
+
 function getPath(elem) {
+  let uniqueSelector = getUniqueSelector(elem);
+
+  if (uniqueSelector) {
+    return uniqueSelector;
+  }
+
   let path;
+  let childIndex = Array.prototype.indexOf.call(elem.parentElement.children, elem) + 1;
+  path = getPath(elem.parentElement) + ' > ' + elem.tagName.toLowerCase() + ':nth-child(' + childIndex + ')';
+
+  return path;
+}
+
+function getUniqueSelector(elem) {
 
   if (!elem) {
     return undefined;
   }
-  
+
   if (elem.id) {
     return '#' + elem.id;
   }
@@ -28,9 +42,4 @@ function getPath(elem) {
   if (elem.tagName === 'BODY') {
     return 'body'
   }
-
-  let childIndex = Array.prototype.indexOf.call(elem.parentElement.children, elem) + 1;
-  path = getPath(elem.parentElement) + ' > ' + elem.tagName.toLowerCase() + ':nth-child(' + childIndex + ')';
-
-  return path;
 }
