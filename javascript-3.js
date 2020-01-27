@@ -5,6 +5,11 @@
 
 
 function getPath(elem) {
+
+  if (!elem) {
+    return undefined;
+  }
+  
   let uniqueSelector = getUniqueSelector(elem);
 
   if (uniqueSelector) {
@@ -19,10 +24,6 @@ function getPath(elem) {
 }
 
 function getUniqueSelector(elem) {
-
-  if (!elem) {
-    return undefined;
-  }
 
   if (elem.id) {
     return '#' + elem.id;
