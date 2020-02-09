@@ -61,8 +61,4 @@ function tree(folderPath) {
   }
 }
 
-//const baseDir = process.argv[0]
-
-// console.log(process.argv)
-
 tree(process.argv[2])
