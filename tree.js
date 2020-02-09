@@ -61,4 +61,8 @@ function tree(folderPath) {
   }
 }
 
-tree('E:/Microsoft.SkypeApp_kzf8qxf38zg5c!App/Home tasks')
+//const baseDir = process.argv[0]
+
+// console.log(process.argv)
+
+tree(process.argv[2])
