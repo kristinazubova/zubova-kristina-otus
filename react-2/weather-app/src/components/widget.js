@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import CityWeather from './cityWeather';
 
 class Widget extends React.Component {
@@ -32,9 +38,9 @@ class Widget extends React.Component {
   }
 
   addToFavorites(city) {
-    if(this.state.favorites.indexOf(city) === -1) {
-    this.state.favorites.push(city)
-    console.log(this.state)
+    if (this.state.favorites.indexOf(city) === -1) {
+      this.state.favorites.push(city)
+      console.log(this.state)
     }
   }
 
@@ -46,41 +52,42 @@ class Widget extends React.Component {
   }
 
   showCities() {
-    
+
   }
 
   render() {
+
     let citiesDivs
 
     if (!this.state.showFavorites) {
       citiesDivs = this.state.citiesList.map(city => {
         if (city)
-          return <div key={city.id} className="Widget__CityBox">
-            <button className="Widget__Button" onClick={(e) => this.addToFavorites(city)}>В избранное</button>
-            <CityWeather city={city} />
-           </div>
-      })    
+          return <Link to={`/${city.name}`} className="Widget__Link">{city.name}</Link>
+
+      })
     }
     else {
       citiesDivs = this.state.favorites.map(city => {
         if (city)
-          return <div key={city.id} className="Widget__CityBox">
-             <button className="Widget__Button" onClick={(e) => this.addToFavorites(city)}>В избранное</button>
-            <CityWeather city={city} />
-           </div>
-      })    
+          return <Link to={`/${city.name}`} className="Widget__Link">{city.name}</Link>
+      })
     }
 
-    return <div className="Widget">
-      <input
-        type="text"
-        className="Widget__Search"
-        placeholder="Введите название города"
-        onChange={this.handleSearch}
-      ></input>
-      <button className="Widget__Favorites" onClick={this.showFavorites}>Избранное</button>
-      {citiesDivs}
-    </div>
+    return <Router>
+      <div className="Widget">
+        <div className ="Widget__Header">
+        <input
+          type="text"
+          className="Widget__Search"
+          placeholder="Введите название города"
+          onChange={this.handleSearch}
+        ></input>
+        <button className="Widget__Favorites" onClick={this.showFavorites}>Избранное</button>
+        </div>
+        {citiesDivs}
+        <Route path="/:name" component={CityWeather} />
+      </div>
+    </Router>     
   }
 }
 

@@ -4,25 +4,26 @@
 
 .Widget {
   text-align: center;
-  width: 40%;
+  width: 70%;
   border: 0.2rem solid lightgrey;
   margin: auto;
   padding: 5px;
 }
 
 .Widget__Content {
- margin: 7px 10px;
+ margin: 25px 10px;
+}
+
+.Widget__Header {
+  width: 90%;
+  margin: auto;
 }
 
 .Widget__Table {
   width: 34rem;
   border: 1px solid lightgrey;
-  margin: 5px;
+  margin: auto;
   border-spacing: 0;
-}
-
-.Widget__Table-row {
-   
 }
 
 .Widget__Table-cell {
@@ -48,10 +49,11 @@
 }
 
 .Widget__Search {
-  width: 35rem;
+  width: 70%;
   height: 2rem;
   margin: 15px 0px;
   border: 2px solid lightgrey;
+  padding: 5px;
 
 }
 
@@ -59,6 +61,13 @@
   margin: 5px;
   background-color: white;
   border: 2px solid lightgrey;
+}
+
+.Widget__Link {
+  display: inline-block;
+  margin: 5px;
+  text-decoration: none;
+  color: black;
 }
 
 
