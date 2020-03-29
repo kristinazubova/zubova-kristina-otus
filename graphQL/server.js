@@ -11,6 +11,12 @@ var schema = buildSchema(`
         basket(id: Int): Basket
         deliveryMethods(weight: Int): [DeliveryMethod]
     },
+    type Mutation {
+      createProduct(id: Int!, name: String, color: String, category: String, url: String): Product!
+      updateProduct(id: Int!, name: String, color: String, category: String, url: String): Product!
+      deleteProduct(id: Int!): Int!
+      deleteProductPack(id: Int!): Int!
+    },
     type Product {
         id: Int
         name: String
@@ -41,6 +47,7 @@ var schema = buildSchema(`
       weight: Int
     }
 `);
+
 
 var productsData = [
   {
@@ -133,17 +140,57 @@ var getProducts = function (args) {
     }, []);
   }
 }
-var getCategories = function() {
+var getCategories = function () {
   return categories;
 }
-var getProductPack = function({ id }) {
+var getProductPack = function ({ id }) {
   return productPacksData.filter(productPack => productPack.id === id);
 }
-var getBasket = function({ id }) {
+var getBasket = function ({ id }) {
   return baskets.filter(basket => basket.id === id);
 }
-var getDeliveryMethods = function({ weight }) {
+var getDeliveryMethods = function ({ weight }) {
   return deliveryMethods.filter(deliveryMethod => deliveryMethod.weight >= weight);
+}
+var createProduct = function ({ id, name, color, category, url }) {
+  var newProduct = { id, name, color, category, url };
+
+  productsData.push(newProduct);
+
+  return newProduct;
+}
+var updateProduct = function ({id, name, color, category, url}) {
+  var currentProduct = productsData.find(product => product.id == id)
+
+  if (name) {
+    currentProduct.name = name;
+  }
+
+  if (color) {
+    currentProduct.color = color;
+  }
+
+  if (category) {
+    currentProduct.category = category;
+  }
+
+  if (url) {
+    currentProduct.url = url;
+  }
+
+  return currentProduct;
+}
+
+var deleteProduct = function({id}) {
+  delete productsData.find(product => product.id == id);
+
+  return id;
+}
+
+var deleteProductPack = function({id}) {
+  delete productPacksData.find(productPack => productPack.id == id);
+
+  return id;
 }
 
 var root = {
@@ -152,7 +199,11 @@ var root = {
   categories: getCategories,
   productPack: getProductPack,
   basket: getBasket,
-  deliveryMethods: getDeliveryMethods
+  deliveryMethods: getDeliveryMethods,
+  createProduct: createProduct,
+  updateProduct: updateProduct,
+  deleteProduct: deleteProduct,
+  deleteProductPack: deleteProductPack
 };
 
 // Create an express server and a GraphQL endpoint
