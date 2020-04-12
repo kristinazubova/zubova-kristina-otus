@@ -2,77 +2,106 @@
   <div class="settings__container">
     <h1 class="settings__title">Привет!</h1>
     <p class="settings__text">
-      Добро пожаловать на 24 тренировочный день,
-      <br />Ваш последний резльтат: решено 10 из 25.
-      <br />Общая точность 80%.
+      Добро пожаловать на текущий тренировочный день,
+      <br />Ваш последний резльтат: решено {{ answerCounter }}.
     </p>
     <h2 class="settings__title_2">Настройки</h2>
     <div class="settings__time-range">
       1
-      <input 
-        type="range" 
-        id="time" 
-        list="time" 
-        min="1" 
-        max="15" 
+      <input
+        type="range"
+        id="time"
+        list="time"
+        min="1"
+        max="15"
         step="1"
-        v-model="duration"
+        @change="(e) => { this.changeDuration(e.target.value) }"
+        :value="duration"
       />
       15
       <div>Длительность {{duration}} минут</div>
     </div>
     <div class="settings__complexity-range">
       1
-      <input 
-        type="range" 
-        id="complexity" 
-        list="complexity" 
-        min="1" max="10" 
-        step="1" 
-        v-model="complexity"
+      <input
+        type="range"
+        id="complexity"
+        list="complexity"
+        min="1"
+        max="5"
+        step="1"
+        @change="(e) => { this.changeComplexity(e.target.value) }"
+        :value="complexity"
       />
-      10
+      5
       <div>Сложность {{complexity}}</div>
     </div>
     <div v-for="(box, index) in checkboxes" :key="index" class="settings__checkboxes">
-      <input type="checkbox" :id="'box' + index" class="settings__checkbox" />
+      <input
+        type="checkbox"
+        :id="'box' + index"
+        class="settings__checkbox"
+        :checked="operations[box.key]"
+        @change="(e) => { toggleOperation(e.target.checked, box.key) }"
+      />
       <label :for="'box' + index" class="settings__checkbox_label">{{box.name}}</label>
     </div>
     <div class="settings__button_container">
-    <router-link to="/GameWindow" class="settings__button">Play!</router-link>
+      <router-link to="/GameWindow" class="settings__button">Play!</router-link>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+
 export default {
   data() {
     return {
-      duration: 1,
-      complexity: 1,
       checkboxes: [
         {
           name: "Суммирование",
-          value: false
+          key: "sum"
         },
         {
           name: "Вычитание",
-          value: false
+          key: "substract"
         },
         {
           name: "Умножение",
-          value: false
+          key: "multipl"
         },
         {
           name: "Деление",
-          value: false
+          key: "division"
         },
         {
           name: "Возведение в степень",
-          value: false
+          key: "exponent"
         }
-      ],
+      ]
     };
+  },
+  computed: mapState([
+    "duration", 
+    "complexity", 
+    "operations", 
+    "answerCounter"
+  ]),
+  methods: {
+    ...mapMutations([
+      "changeDuration",
+      "changeComplexity",
+      "addOperation",
+      "deleteOperation"
+    ]),
+    toggleOperation(value, type) {
+      if (value) {
+        this.addOperation(type);
+      } else {
+        this.deleteOperation(type);
+      }
+    }
   }
 };
 </script>
@@ -83,22 +112,21 @@ export default {
   text-align: left;
   padding: 3rem;
   margin: auto;
-  border: 1px solid lightblue;
+  border: 2px solid lightblue;
 }
-.settings__title_2{
+.settings__title_2 {
   margin: 2rem 0;
-
 }
 
-.settings__time-range{
- margin: 2rem 0;
+.settings__time-range {
+  margin: 2rem 0;
 }
 
-.settings__complexity-range{
+.settings__complexity-range {
   margin-bottom: 2rem;
 }
 
-.settings__checkboxes{
+.settings__checkboxes {
   margin: 1rem 0;
 }
 
@@ -109,10 +137,7 @@ export default {
 .settings__button {
   text-decoration: none;
   color: darkslategrey;
-  border: 1px solid lightgray;
+  border: 2px solid lightgray;
   padding: 0.4rem 1rem;
-  box-shadow: -1px 2px 3px 1px lightgray;
 }
-
-
 </style>
