@@ -18,7 +18,7 @@
           v-for="index in 10"
           :key="index"
           class="gamewindow__calculator__key"
-          @click="(e) => { handleNumberClick(e, index) }"
+          @click="handleNumberClick(e, index)"
         >{{index - 1}}</div>
       </div>
       <div class="gamewindow__calculator_operators">
@@ -26,7 +26,7 @@
           class="gamewindow__calculator_operator"
           v-for="(operator, index) in operators"
           :key="index"
-          @click="(e) => { handleEvent(e, operator.value) }"
+          @click="handleEvent(e, operator.value)"
         >{{operator.value}}</div>
       </div>
     </div>
