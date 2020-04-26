@@ -20,6 +20,7 @@ export class AppComponent {
     selectedLanguage: 'english',
     chosenWordsNum: this.words.length
   }
+  activeTabs = [false, false, false]
 
   onOutletLoaded(component) {
     if (component instanceof SettingsComponent) {
@@ -44,6 +45,17 @@ export class AppComponent {
         this.words.push(newWordPair)
         localStorage.setItem('words', JSON.stringify(this.words))
       })
+    }
+  }
+
+  clickTab(index): void {
+    for(let i = 0; i < this.activeTabs.length; i++) {
+      if(index === i) {
+        this.activeTabs[i] = true;
+      }
+      else {
+        this.activeTabs[i] = false;
+      }
     }
   }
 }

@@ -1,3 +1,6 @@
-<h3>{{words[currentWordIndex][settings.selectedLanguage]}}</h3>
-<input type="text" [(ngModel)]="translatedWord">
-<button (click)="nextWord()">Next</button>
+<h2 class="go__current-word">{{words[currentWordIndex][settings.selectedLanguage]}}</h2>
+<div>
+  <label for="input__answer" class="go__input-label">Write your answer: </label>
+  <input type="text" [(ngModel)]="translatedWord" id="input_answer" class="go__input">
+</div>
+<button (click)="nextWord()" class="go__button">Next</button>

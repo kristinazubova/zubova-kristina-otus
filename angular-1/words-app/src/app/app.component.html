@@ -1,12 +1,19 @@
-<h1>Learn English</h1>
-
-<div>
-  <ul>
-    <li><a routerLink="/recently-added" routerLinkActive="active">Recently Added</a></li>
-    <li><a routerLink="/exercises" routerLinkActive="active">Go</a></li>
-    <li><a routerLink="/settings" routerLinkActive="active">Settings</a></li>
-  </ul>
-  <div>
-    <router-outlet (activate)="onOutletLoaded($event)"></router-outlet>
+<div class="main__content">
+  <h1 class="main__title">Learn English</h1>
+  <div class="main__gamewindow">
+    <ul class="main__tabs">
+      <li [ngClass]="{'main__tab': true, 'isActive': activeTabs[0]}" (click)="clickTab(0)" routerLink="/recently-added" routerLinkActive="active">
+        <a>Recently Added</a>
+      </li>
+      <li [ngClass]="{'main__tab': true, 'isActive': activeTabs[1]}" (click)="clickTab(1)" routerLink="/exercises" routerLinkActive="active">
+        <a>Go</a>
+      </li>
+      <li [ngClass]="{'main__tab': true, 'isActive': activeTabs[2]}" (click)="clickTab(2)"  routerLink="/settings" routerLinkActive="active">
+        <a>Settings</a>
+      </li>
+    </ul>
+    <div class="main__tab_direction">
+      <router-outlet (activate)="onOutletLoaded($event)"></router-outlet>
+    </div>
   </div>
 </div>

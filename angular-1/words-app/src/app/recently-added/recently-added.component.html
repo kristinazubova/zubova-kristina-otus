@@ -1,9 +1,11 @@
-<div *ngFor="let word of words">{{word.english}} - {{word.russian}}</div>
-<button (click)="toggleInput()">Add new</button>
-<div *ngIf="showInput" >
-  <label for="word">Write a russian word</label>
-  <input type="text" id="word" [(ngModel)]="russianWord">
-  <label for="translation">Write a translation</label>
-  <input type="text" id="translation" [(ngModel)]="translatedWord">
-  <button (click)="saveWord()">Save word</button>
+<div *ngFor="let word of words" class="recently__word-list">{{word.english}} - {{word.russian}}</div>
+<button (click)="toggleInput()" class="button_add-new">Add new</button>
+<div *ngIf="showInput">
+  <div class="recently__inputs_block">
+    <label for="word">Write a russian word</label>
+    <input type="text" id="word" [(ngModel)]="russianWord" class="recently__input">
+    <label for="translation">Write a translation</label>
+    <input type="text" id="translation" [(ngModel)]="translatedWord" class="recently__input">
+    <button (click)="saveWord()" class="button_add-new">Keep the word</button>
+  </div>
 </div>

@@ -5,6 +5,7 @@ import { RecentlyAddedComponent } from './recently-added/recently-added.componen
 import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'recently-added', pathMatch: 'full' },
   { path: 'recently-added', component: RecentlyAddedComponent },
   { path: 'exercises', component: ExercisesComponent },
   { path: 'settings', component: SettingsComponent }

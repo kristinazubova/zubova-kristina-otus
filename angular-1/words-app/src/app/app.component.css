@@ -1,29 +1,50 @@
-.main__header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 10rem;
-  background-color: lightblue;
+.main__gamewindow {
+  width: 70%;
+  margin: auto;
+  text-align: center;
 }
 
-.main__header_content {
-  width: 100%;
-  margin: 1rem;
-  display: flex;
-  justify-content: space-between;
+.main__title {
+  text-align: center;
+  color: #717171;
 }
 
-.header_title {
+.main__tabs {
+  display: flex;
+  flex-flow: nowrap;
+  list-style: none;
+  padding: 0;
   margin: 0;
 }
-.main__menu {
-  display: flex;
-  width: 25rem;
-  justify-content: space-around;
-  align-items: center;
-}
-.main__menu_item {
-  list-style: none;
-  margin-right: 1rem;
 
+.main__tab {
+  display: block;
+  text-align: center;
+  flex: 1 0 auto;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border: 2px solid lightgrey;
+  padding: 0.6rem;
+  
+}
+
+a {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+  font-size: 1.1rem;
+}
+
+.main__tab_direction {
+  border-left: 2px solid lightgray;
+  border-right: 2px solid lightgray;
+  border-bottom: 2px solid lightgray;
+  margin: 0;
+  padding: 1rem;
+}
+
+.isActive {
+  background-color: #C2C2C2 ;
 }
