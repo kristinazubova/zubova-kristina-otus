@@ -1,0 +1,12 @@
+<h1>Learn English</h1>
+
+<div>
+  <ul>
+    <li><a routerLink="/recently-added" routerLinkActive="active">Recently Added</a></li>
+    <li><a routerLink="/exercises" routerLinkActive="active">Go</a></li>
+    <li><a routerLink="/settings" routerLinkActive="active">Settings</a></li>
+  </ul>
+  <div>
+    <router-outlet (activate)="onOutletLoaded($event)"></router-outlet>
+  </div>
+</div>

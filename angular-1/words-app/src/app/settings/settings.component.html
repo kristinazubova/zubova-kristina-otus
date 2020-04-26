@@ -1,0 +1,20 @@
+<label for="lang">Language</label>
+<select id="lang" [(ngModel)]="chosenLang">
+  <option 
+    *ngFor="let lang of settings.languages" 
+    [value]="lang" 
+  >
+    {{lang}}
+  </option>
+</select>
+<label for="numWords">Nb. of words: </label>
+<select id="numWords" [(ngModel)]="chosenNum">
+  <option 
+    *ngFor="let num of wordsCountOptions" 
+    [value]="num" 
+  >
+    {{num}}
+  </option>
+</select>
+<button (click)="raiseSave()">Save</button>
+

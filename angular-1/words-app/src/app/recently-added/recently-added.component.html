@@ -1,0 +1,9 @@
+<div *ngFor="let word of words">{{word.english}} - {{word.russian}}</div>
+<button (click)="toggleInput()">Add new</button>
+<div *ngIf="showInput" >
+  <label for="word">Write a russian word</label>
+  <input type="text" id="word" [(ngModel)]="russianWord">
+  <label for="translation">Write a translation</label>
+  <input type="text" id="translation" [(ngModel)]="translatedWord">
+  <button (click)="saveWord()">Save word</button>
+</div>
