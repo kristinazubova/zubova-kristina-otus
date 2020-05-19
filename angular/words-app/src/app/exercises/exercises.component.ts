@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-exercises',
@@ -6,12 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./exercises.component.css']
 })
 export class ExercisesComponent implements OnInit {
-
+  exerciseForm = new FormGroup({
+    translatedWord: new FormControl(''),
+  });
   words: any
   settings: any
   currentWordIndex: number
-  translatedWord: string
-
+  wordsCounter: number = 0
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -19,9 +22,10 @@ export class ExercisesComponent implements OnInit {
 
   nextWord(): void {
     if (this.currentWordIndex < this.settings.chosenWordsNum - 1) {
-      if (this.translatedWord == this.words[this.currentWordIndex]['russian']) {
+      if (this.exerciseForm.value.translatedWord == this.words[this.currentWordIndex]['russian']) {
+        this.wordsCounter++
         this.currentWordIndex++
-        this.translatedWord = ''
+        this.exerciseForm.reset()
       }
       else {
         alert('Error!')

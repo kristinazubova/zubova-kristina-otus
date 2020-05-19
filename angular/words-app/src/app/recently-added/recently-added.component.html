@@ -2,11 +2,8 @@
 <button (click)="toggleInput()" class="button_add-new">Add new</button>
 <div *ngIf="showInput">
   <div class="recently__inputs_block">
-    <label for="word">Write a russian word</label>
+    <label for="word">Write a russian text</label>
     <input type="text" id="word" [(ngModel)]="russianWord" class="recently__input">
-    <button class="button_add-new" (click)="translateRussianWord()">Translate</button>
-    <label for="translation">Write a translation</label>
-    <input type="text" id="translation" [(ngModel)]="translatedWord" class="recently__input">
-    <button (click)="saveWord()" class="button_add-new">Keep the word</button>
+    <button (click)="translateRussianWord()" class="button_add-new">Translate and keep the word</button>
   </div>
 </div>

@@ -1,6 +1,7 @@
 <h2 class="go__current-word">{{words[currentWordIndex][settings.selectedLanguage]}}</h2>
-<div>
+<form [formGroup]="exerciseForm">
   <label for="input__answer" class="go__input-label">Write your answer: </label>
-  <input type="text" [(ngModel)]="translatedWord" id="input_answer" class="go__input">
-</div>
+  <input type="text" formControlName="translatedWord" id="input_answer" class="go__input">
+  <div class="go__counter">{{ wordsCounter }}</div>
+</form>
 <button (click)="nextWord()" class="go__button">Next</button>

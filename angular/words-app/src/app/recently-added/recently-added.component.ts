@@ -25,20 +25,24 @@ export class RecentlyAddedComponent implements OnInit {
     this.showInput = !this.showInput
   }
 
-  saveWord(): void {
+  saveWord(russianWord, translatedWord): void {
     this.save.emit({
-      russian: this.russianWord,
-      english: this.translatedWord
+      russian: russianWord,
+      english: translatedWord
+    })  
+  }
+
+  translateRussianWord(): void {
+    let wordsArray = this.russianWord.split(' ')
+
+    wordsArray.forEach((word) => {
+      this.httpClient.getTranslate(word).subscribe((data: Translated) => {
+        this.saveWord(word, data.text[0])
+      })
     })
 
     this.russianWord = ''
     this.translatedWord = ''
-  }
-
-  translateRussianWord(): void {
-    this.httpClient.getTranslate(this.russianWord).subscribe((data: Translated) => {
-      this.translatedWord = data.text[0]
-    })
   }
 }
 
