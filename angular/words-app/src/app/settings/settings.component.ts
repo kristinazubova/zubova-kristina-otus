@@ -1,5 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import ISettings from './../interfaces/settings.interface';
 
 @Component({
   selector: 'app-settings',
@@ -8,10 +9,10 @@ import { EventEmitter } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  settings: any
+  settings: ISettings
   wordsCountOptions: any
-  chosenLang:string
-  chosenNum:number
+  chosenLang: string
+  chosenNum: number
 
   @Output() save: EventEmitter<any> = new EventEmitter();
 

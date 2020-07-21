@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ExercisesComponent } from './exercises/exercises.component';
 import { RecentlyAddedComponent } from './recently-added/recently-added.component';
 import { SettingsComponent } from './settings/settings.component';
+import ISettings from './interfaces/settings.interface';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent {
   words = localStorage.words
     ? JSON.parse(localStorage.words)
     : []
-  settings = {
+  settings: ISettings = {
     time: 1,
     languages: ['english'],
     wordsCount: this.words.length,

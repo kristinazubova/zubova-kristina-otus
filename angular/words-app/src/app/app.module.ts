@@ -9,6 +9,8 @@ import { RecentlyAddedComponent } from './recently-added/recently-added.componen
 import { ExercisesComponent } from './exercises/exercises.component';
 import { SettingsComponent } from './settings/settings.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,10 +19,11 @@ import { SettingsComponent } from './settings/settings.component';
     SettingsComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })
