@@ -1,0 +1,24 @@
+{
+  "name": "zubova-kristina-otus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "javascript-1.js",
+  "dependencies": {
+    "lit-element": "^2.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "tree": "node tree.js ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kristinazubova/zubova-kristina-otus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kristinazubova/zubova-kristina-otus/issues"
+  },
+  "homepage": "https://github.com/kristinazubova/zubova-kristina-otus#readme"
+}
